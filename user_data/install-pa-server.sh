@@ -76,7 +76,6 @@ ExecStart=/opt/local/pa/stable/server \
 --replay-timeout 180 \
 --gameover-timeout 360 \
 --server-name "patrickc server" \
---server-password "password" \
 --game-mode "PAExpansion1:config" \
 --output-dir /var/log/pa/output
 
