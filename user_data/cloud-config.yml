@@ -1,0 +1,29 @@
+#cloud-config: https://help.ubuntu.com/community/CloudInit
+
+# https://cloudinit.readthedocs.io/en/latest/topics/modules.html#snap
+snap:
+  commands:
+    # https://github.com/golang/go/wiki/Ubuntu
+    00: sudo snap install --classic go
+
+# https://cloudinit.readthedocs.io/en/latest/topics/modules.html#package-update-upgrade-install
+package_update: true
+package_upgrade: true
+packages:
+  - expect
+  - libgl1-mesa-glx 
+  - libsdl2-2.0
+
+groups:
+  - paserver
+
+users:
+  - name: paserver
+    primary_group: paserver
+  - name: patrickc
+    gecos: Patrick Cavanaugh
+    groups: paserver
+    shell: /bin/bash
+    ssh_authorized_keys:
+      - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCrfUdX13xXS3hW5/NHlrJdCCHsfDRZGbriz1kjiKtbrpiahmRLjKFhc/Ruldqr+bFoC0qIgoMf6WqvLGKjOfM5wicHfFemDtu6BSkbqR6CBNvaOFbWikjup3SbDNzP4EM6sjdAiE2pLt54+KjpNAyqufvGw9Bkg1T0TC5cuZ3nqUNX1iJXjHASxXs7nsXTTno57Rpucsmm/zZdfbj3Wt7cqvWgfS/1CmiPsslD/sKajmLw+z1G4s1sCLsXTFgGiHNN/9pTAjJS/4CNfeblh3W46RLQG39Sfyje3INNddIy2F85bn3CkfgESo21iqrcbPO7UatN4qLt1TFCDYgFinpR patrickc@DESKTOP-GDJBM5A"
+    sudo: ALL=(ALL) NOPASSWD:ALL
